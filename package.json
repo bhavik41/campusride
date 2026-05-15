@@ -1,0 +1,9 @@
+{
+  "name": "campusride",
+  "version": "0.1.0",
+  "description": "CampusRide - Ride sharing platform for college students",
+  "scripts": {
+    "dev:backend": "npm run --prefix backend dev",
+    "dev:frontend": "npm run --prefix frontend dev"
+  }
+}
