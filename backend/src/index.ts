@@ -10,6 +10,10 @@ const PORT = process.env.PORT || 3001;
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json());
 
+import authRoutes from './routes/auth';
+
+app.use('/api/auth', authRoutes);
+
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', message: 'CampusRide API is running' });
 });
