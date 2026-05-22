@@ -8,15 +8,34 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(cuid())
+  id         String    @id @default(cuid())
   name       String
-  email      String   @unique
+  email      String    @unique
   password   String
   phone      String?
-  isStudent  Boolean  @default(false)
+  isStudent  Boolean   @default(false)
   university String?
   avatar     String?
   bio        String?
-  role       String   @default("USER")
-  createdAt  DateTime @default(now())
+  role       String    @default("USER")
+  createdAt  DateTime  @default(now())
+  rides      Ride[]    @relation("DriverRides")
+}
+
+model Ride {
+  id            String   @id @default(cuid())
+  driverId      String
+  driver        User     @relation("DriverRides", fields: [driverId], references: [id])
+  fromCity      String
+  toCity        String
+  fromAddress   String?
+  toAddress     String?
+  departureDate DateTime
+  seats         Int
+  seatsLeft     Int
+  pricePerSeat  Float
+  rideType      String   @default("LONG_DISTANCE")
+  description   String?
+  status        String   @default("ACTIVE")
+  createdAt     DateTime @default(now())
 }
