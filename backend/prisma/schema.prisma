@@ -20,12 +20,14 @@ model User {
   role       String    @default("USER")
   createdAt  DateTime  @default(now())
   rides      Ride[]    @relation("DriverRides")
+  bookings   Booking[]
+  sentMessages Message[] @relation("SentMessages")
 }
 
 model Ride {
-  id            String   @id @default(cuid())
+  id            String         @id @default(cuid())
   driverId      String
-  driver        User     @relation("DriverRides", fields: [driverId], references: [id])
+  driver        User           @relation("DriverRides", fields: [driverId], references: [id])
   fromCity      String
   toCity        String
   fromAddress   String?
@@ -34,8 +36,21 @@ model Ride {
   seats         Int
   seatsLeft     Int
   pricePerSeat  Float
-  rideType      String   @default("LONG_DISTANCE")
+  rideType      String         @default("LONG_DISTANCE")
   description   String?
-  status        String   @default("ACTIVE")
-  createdAt     DateTime @default(now())
+  status        String         @default("ACTIVE")
+  createdAt     DateTime       @default(now())
+  bookings      Booking[]
+  conversations Conversation[]
+}
+
+model Booking {
+  id        String   @id @default(cuid())
+  rideId    String
+  ride      Ride     @relation(fields: [rideId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  seats     Int      @default(1)
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
 }
