@@ -91,6 +91,7 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
   }
 });
 
+// POST /api/rides/:id/book - book a seat (decrements seatsLeft atomically)
 // GET /api/rides/:id - get ride details
 router.get('/:id', async (req: AuthRequest, res: Response): Promise<void> => {
   try {
