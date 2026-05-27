@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
 import rideRoutes from './routes/rides';
+import userRoutes from './routes/users';
+import dashboardRoutes from './routes/dashboard';
 
 dotenv.config();
 
@@ -17,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/rides', rideRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', message: 'CampusRide API is running' });
