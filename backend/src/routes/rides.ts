@@ -50,7 +50,7 @@ router.get('/', async (req: AuthRequest, res: Response): Promise<void> => {
     res.json({ rides });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to fetch rides' });
+    res.status(500).json({ error: 'Failed to fetch rides', details: process.env.NODE_ENV === 'development' ? String(err) : undefined });
   }
 });
 
@@ -91,7 +91,6 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
   }
 });
 
-// POST /api/rides/:id/book - book a seat (decrements seatsLeft atomically)
 // GET /api/rides/:id - get ride details
 router.get('/:id', async (req: AuthRequest, res: Response): Promise<void> => {
   try {
