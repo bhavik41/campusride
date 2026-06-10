@@ -50,7 +50,7 @@ router.get('/', async (req: AuthRequest, res: Response): Promise<void> => {
     res.json({ rides });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to fetch rides', details: process.env.NODE_ENV === 'development' ? String(err) : undefined });
+    res.status(500).json({ error: 'Failed to fetch rides' });
   }
 });
 
