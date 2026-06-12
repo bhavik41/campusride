@@ -120,4 +120,5 @@ router.get('/:id', async (req: AuthRequest, res: Response): Promise<void> => {
   }
 });
 
+// Updated: added public profile endpoint
 export default router;
