@@ -29,6 +29,7 @@ api.interceptors.response.use(
   }
 );
 
+// Updated: clear localStorage on 401
 export default api;
 
 // Helper to extract error message
