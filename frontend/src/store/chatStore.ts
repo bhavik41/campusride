@@ -56,6 +56,7 @@ interface ChatState {
   fetchUnreadCount: () => Promise<void>;
 }
 
+// fix: deduplicate incoming socket messages
 export const useChatStore = create<ChatState>((set, get) => ({
   conversations: [],
   activeConversationId: null,
